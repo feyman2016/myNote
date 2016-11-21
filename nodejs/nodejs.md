@@ -26,3 +26,14 @@ Instead of something like
 
 Don't forget to run npm install or npm update afterwards.
 
+- If meet this:
+	
+	MSBUILD : error MSB3428: Could not load the Visual C++ component "VCBuild.exe". To fix this, 1 
+) install the .NET Framework 2.0 SDK, 2) install Microsoft Visual Studio 2005 or 3) add the lo 
+cation of the component to the system path if it is installed elsewhere.
+
+try this:
+	
+		npm install --global --production windows-build-tools
+
+
