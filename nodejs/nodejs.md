@@ -35,5 +35,8 @@ cation of the component to the system path if it is installed elsewhere.
 try this:
 	
 		npm install --global --production windows-build-tools
+		(when you run the command above,you might meet this prompt:node v7.1.0 has a known bug with windows,then you can downgrade node to v7.0.0 )
+
+
 
 
