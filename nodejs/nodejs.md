@@ -1,4 +1,6 @@
-## nodejs
+## nodejs on Windows 7
+
+I hate Windows!!!!!
 
 
 
@@ -36,6 +38,31 @@ try this:
 	
 		npm install --global --production windows-build-tools
 		(when you run the command above,you might meet this prompt:node v7.1.0 has a known bug with windows,then you can downgrade node to v7.0.0 )
+
+and if it does not solve your problem, install visual studio 2012(I use visual studio 2012 professional)
+
+- error MSB6006: "CL.exe" exited with code -1073741515 
+
+try this way :
+Add this to the  PATH environment variables:
+
+	C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE  and  C:\Program Files (x86)\Microsoft Visual Studio 	12.0\SDK\v3.5\Bin   to PATH enviroment variable in System Variable
+
+Copy those files:  
+
+	msobj110.dll
+	mspdb110.dll
+	mspdbcore.dll
+	mspdbsrv.exe
+
+From
+
+	C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE
+
+to
+
+	C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin
+
 
 
 
