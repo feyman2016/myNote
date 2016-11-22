@@ -1,0 +1,1 @@
+## This directory is for notes about openstack related technologies
