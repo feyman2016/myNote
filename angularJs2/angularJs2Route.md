@@ -10,6 +10,28 @@ If you are using the new router (3.0.0-beta2), you can use the ActivatedRoute to
     goToContact() {
       this.router.navigate(["../contacts"], { relativeTo: this.r });
     }
+ 
+-   some more reference about router navigation:
+
+    When performing relative navigation involving routes that start with ./ and ../, could we make the {relativeTo: this.currentActivatedRoute} implicit?
+
+    Example, make:
+
+    // from within /team/3, perform a relative navigation to /team/3/details
+    this.router.navigate(['./details'], {relativeTo: this.route});
+    ...be equivalent to:
+
+    // from within /team/3, perform a relative navigation to /team/3/details
+    this.router.navigate('./details');
+    Another example, make:
+
+    // from within /team/3, perform a relative navigation to /team/4
+    this.router.navigate(['../4'], {relativeTo: this.route});
+    ...be equivalent to:
+
+    // from within /team/3, perform a relative navigation to /team/4
+    this.router.navigate('../4');
+    
     
 ##  what is difference between forRoot and for Child?
 
