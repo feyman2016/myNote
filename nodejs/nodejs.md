@@ -67,3 +67,7 @@ to
 
 
 
+## nodejs on Ubuntu 14.04
+
+-   just use the `nvm` to install,following this:  
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-with-nvm-node-version-manager-on-a-vps
