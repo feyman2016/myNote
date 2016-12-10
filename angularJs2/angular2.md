@@ -63,7 +63,18 @@
     }
     }
 	
+## if you wanna set interval,just do this:
 
+	import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
+
+	@Component({
+		XXX
+	})
+	export class XXX {
+		constructor(){
+			IntervalObservable.create(5000).subscribe(() => do something)//this will set a observalbe with 5 seconds interval
+		}
+	}
 
 
 
