@@ -89,4 +89,11 @@ the `Elvis Operator ( ?. ) ` canbe used to skip the no data error keep the app r
 ##  Angular2 - error if don't check if {{object.field}} exists
 
 	http://stackoverflow.com/questions/34910928/angular2-error-if-dont-check-if-object-field-exists
+	
+##  Problems with Observable.interval - data is not updating in template, ngFor is incorrect length, get polling data on startup
+
+
+this ticked answer mentioned that the unproper use of  `changeDetection: ChangeDetectionStrategy.OnPush ` would prevent the change!
+
+http://stackoverflow.com/questions/35599714/problems-with-observable-interval-data-is-not-updating-in-template-ngfor-is-i
 
