@@ -84,3 +84,9 @@ the following answer describes the data fetching and the template rendering orde
 http://stackoverflow.com/questions/34731869/wait-for-angular-2-to-load-resolve-model-before-rendering-view-template
 
 the `Elvis Operator ( ?. ) ` canbe used to skip the no data error keep the app rolling~~
+
+
+##  Angular2 - error if don't check if {{object.field}} exists
+
+	http://stackoverflow.com/questions/34910928/angular2-error-if-dont-check-if-object-field-exists
+
