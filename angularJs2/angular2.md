@@ -77,4 +77,10 @@
 	}
 
 
+##  Wait for Angular 2 to load/resolve model before rendering view/template
 
+the following answer describes the data fetching and the template rendering order and gives you a way to solve the `TypeError: Cannot read property 'firstName' of null in [null]` error~~
+
+http://stackoverflow.com/questions/34731869/wait-for-angular-2-to-load-resolve-model-before-rendering-view-template
+
+the `Elvis Operator ( ?. ) ` canbe used to skip the no data error keep the app rolling~~
