@@ -95,5 +95,7 @@ the `Elvis Operator ( ?. ) ` canbe used to skip the no data error keep the app r
 
 this ticked answer mentioned that the unproper use of  `changeDetection: ChangeDetectionStrategy.OnPush ` would prevent the change!
 
+additionally, this is a usable http.get in interval to fetch data and update the view
+
 http://stackoverflow.com/questions/35599714/problems-with-observable-interval-data-is-not-updating-in-template-ngfor-is-i
 
