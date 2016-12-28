@@ -99,3 +99,8 @@ additionally, this is a usable http.get in interval to fetch data and update the
 
 http://stackoverflow.com/questions/35599714/problems-with-observable-interval-data-is-not-updating-in-template-ngfor-is-i
 
+## When you met this:
+	zone.js:390 Error: Uncaught (in promise): TypeError: ctorParameters.map is not a function
+	TypeError: ctorParameters.map is not a function
+
+might caused by the angular2 version and some certain npm package mismatch
