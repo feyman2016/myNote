@@ -19,4 +19,8 @@ if it doesn't work , consider to change the mirror:
 	deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
 	deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
 	deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+## auto config eth when VM reboot
+
+https://www.cyberciti.biz/faq/setting-up-an-network-interfaces-file/
 	
