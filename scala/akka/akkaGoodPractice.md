@@ -1,10 +1,11 @@
-# Akka Good Practice
-    &ensp; 以下内容总结自lightbend akka培训时与讲师Eric交流
+# Akka Good Practice  
+
+&ensp; &ensp; 以下内容总结自lightbend akka培训时与讲师Eric交流
 
 - 什么是Actor模型？  
-    &ensp; Actor就像真实世界中的人，人都是独立的，可以自己决定对外来的信息作出何种反应
-    一个Actor系统中可能有很多Actor，Actor相互通信的方式就是发消息  
-    Actor系统中，一切都是Actor
+    &ensp; &ensp; Actor就像真实世界中的人，人都是独立的，可以自己决定对外来的信息作出何种反应  
+    &ensp; &ensp;一个Actor系统中可能有很多Actor，Actor相互通信的方式就是发消息    
+    &ensp; &ensp;Actor系统中，一切都是Actor  
     
 
 ## 1.Actor监管
@@ -19,7 +20,7 @@
 &ensp; &ensp; 以上类似于一个将军可能面对敌军突击，他可能会需要知道什么战术可以突围，怎样可以解决粮草问题，并且需要与敌军刚正面，
 诸如此类，显然将军不会亲自干这些事情，他会让军师研究下战术阵型，让排头兵去冲锋陷阵，诸如此类。
 
-**下沉可能发生异常的Actor**
+**push down可能发生异常的Actor**
 
 &ensp; &ensp; 考虑战争中一些危险的任务，比如炸碉堡，潜入敌营等任务，如果一个将军去干失败会怎么样？  
 我想大概只有两个字：血崩！第二天就会传出大将军阵亡的消息，军心大乱，全军覆没。当然，这件事如果让一个
@@ -75,20 +76,22 @@ Akka中发消息的两种方式 :
         `a ! msg    //normal way  `  
         `a ? msg   // ask pattern`
 
-当使用第一种方式是发了就发了，并没有期待对方对这条消息的直接回应；第二种方式是：给a发了消息后，就像给写了
-情书，盼着受到她的回复        
+当使用第一种方式是发了就发了，并没有期待对方对这条消息的直接回应；第二种方式是：给a发了消息后，就像给a写了
+情书，盼着受到她的回复，针对这种场景，akka中提供了两种处理方式：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 2.   使用Future[T]   
+    一般会结合Timeout参数使用，对于一个Future类型的f，可以使用如下方式处理：
+    
+        f.onComplete match {
+        case Success(x) => //XXX
+        case Failure(e) => //YYY}
+        
+    在timeout内，如果收到回复，就进入Success，否则，就match Failure，这里要注意的一点是：
+    
+    **尽量不要在f.onComplete的case branch内使用sender（）方法，因为future本身会在另一个线程中，导致sender（）方法返回值可能不是你想要的
+    ，从安全性出发，建议是用的方法是pipeTo**
+    
+ 2.   使用pipeTo  
+    `a ? msg pipeTo b   //使用ask patter给a发消息，pipeTo内部以一种安全的方式将收到的来自a的response转发给b`  
+    `a ? msg pipeTo self //与上面例子的差别就是消息最后又发给了自己，可以在receive函数中定义相应的处理方法。`  
+ 
