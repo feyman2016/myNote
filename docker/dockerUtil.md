@@ -23,3 +23,15 @@ RUN apt-get install  -y iptables
 
 
 
+
+
+#### 2. Run as root within docker 
+
+add `--privileged` when you execute `docker run`
+
+```
+docker run XXX --privileged
+```
+
+
+
