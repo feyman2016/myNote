@@ -261,3 +261,78 @@ Please be attentive: the directory `/var/lib/jenkins` should be accessd by the j
 
 #### Artifactory
 
+​	This guide is for installing artifactory on ubuntu14.04, and java should be installed before that
+
+Follow this guide to install java :
+
+`https://hostpresto.com/community/tutorials/how-to-install-jfrog-artifactory-on-ubuntu-14-04/`
+
+And then follow the [official](https://www.jfrog.com/confluence/display/RTF/Installing+on+Linux+Solaris+or+Mac+OS#InstallingonLinuxSolarisorMacOS-RPMorDebianInstallation) guide to install artifactory:
+
+```
+#: echo "deb https://jfrog.bintray.com/artifactory-pro-debs xenial main" | sudo tee -a  \ /etc/apt/sources.list
+#: curl https://bintray.com/user/downloadSubjectPublicKey?username=jfrog | sudo apt-key add -
+#: sudo apt-get update
+#: sudo apt-get install jfrog-artifactory-oss
+#: service artifactory start | stop
+```
+
+
+
+#### Docker-Registry
+
+- Follow [this guide](https://docs.docker.com/registry/#alternatives) to install 
+
+  ```
+  docker run -d -p 5000:5000 --name registry-srv registry:2
+  ```
+
+  ​
+
+- Confirm docker-registry installed successfully
+
+  ```
+  # from other VM with docker environment
+  ~: docker push 16.28.221.80:5000/mysecond
+  Error response from daemon: Get https://10.10.239.222:5000/v1/_ping: http: server gave HTTP response to HTTPS client
+
+  ~: touch /etc/docker/daemon.json
+  ~: echo '{ "insecure-registries":    ["$your-registry-external-ip:5000"] }' >  \ /etc/docker/daemon.json
+  ~: sudo service docker restart
+  ~: docker push 16.28.221.80:5000/mysecond  //will success
+  ```
+
+  ​
+
+- Install the web-UI for docker-registry:
+
+  ```
+  docker run -it -d  -p 8080:8080 --name registry-web --link registry-srv -e REGISTRY_URL=http://16.28.221.80:5000/v2 -e REGISTRY_NAME=16.28.221.80:5000 hyper/docker-registry-web 
+  ```
+
+  Then access the docker registry by `16.28.221.80:8080`
+
+  ​
+
+  #### DNS
+
+  Dns can be set using [skydns](https://github.com/skynetservices/skydns) and etcd
+
+  ```
+  root@dns-server:/etc/init.d# docker ps -a
+  CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                                                                NAMES
+  c0816ffdc297        skynetservices/skydns        "/skydns"                12 months ago       Up 48 minutes                                                                            skydns
+  6e3643d77e78        quay.io/coreos/etcd:v2.2.5   "/etcd -name etcd0 -a"   12 months ago       Up 48 minutes       0.0.0.0:2379-2380->2379-2380/tcp, 0.0.0.0:4001->4001/tcp, 7001/tcp   etcd
+
+  ```
+
+  ​
+
+  ​
+
+  ​
+
+
+
+
+
