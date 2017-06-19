@@ -23,7 +23,6 @@ sn – suer name（真实名称）
 cn - common name（常用名称）
 dn - distinguished name（专有名称）
 
-
 ```
 
 ​	To simplify , we can just think that LDAP use a tree-like structure for storing, a certain record(some specific user) might contains high-level tags as `c - countryName`   ,  and group-level tags as `ou – organization unit` and user-level tags as `uid`.  `dc - domainComponent` is component of `DNS domain name`,say the `DNS domain name: gitlab.dev` is made of `dc:gitlab,and dc:dev`. Finnaly, the  `dn - distinguished name` is a full record that contains all the tags from high-level to low-level ,for example `ou=Users,dc=gitlab,dc=dev`  is a group name Users, and `dn: uid=bianhongyu,ou=Users,dc=gitlab,dc=dev` is a specific user of this group.
@@ -258,6 +257,38 @@ docker run --name myjenkins -d -t -p 8080:8080 -p 50000:50000 -v \ /var/lib/jenk
 ```
 
 Please be attentive: the directory `/var/lib/jenkins` should be accessd by the jenkins user from the docker container.So maybe you need use `chmod` upon the dir `/var/lib/jenkins`
+
+if you want to use docker command in the jenkins container, 
+
+**1.an alternative is to add :**
+
+```
+DOCKER_OPTS="-H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock --insecure-registry developer.vmse.skydns.local:5000"
+```
+
+in `/etc/default/docker`,then execute `service docker restart` on **HOST VM**
+
+**2.install docker in the jenkins image**
+
+create a Dockerfile:`vi Dockerfile`  , add the following:
+
+```
+FROM jenkins
+USER root
+RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/*
+```
+
+then: `docker build -t jenkinsdocker1 .`
+
+then run the docker image `jenkinsdocker1 ` with the `/var/run/docker.sock` directory **mounted**
+
+```
+docker run --name myjenkins   --privileged -d -t -p 8080:8080 -p 50000:50000 -v /var/lib/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsdocker1
+```
+
+after that, login to the jenkins web UI, then set the "Jenkins" -> "系统管理" -> "系统设置" -> "Docker Builder" -> "Docker URL" as **unix:///var/run/docker.sock**
+
+3. then you can use docker command in the jenkins jobs.
 
 #### Artifactory
 
