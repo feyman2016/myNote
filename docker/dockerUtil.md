@@ -23,8 +23,6 @@ RUN apt-get install  -y iptables
 
 
 
-
-
 #### 2. Run as root within docker 
 
 add `--privileged` when you execute `docker run`
@@ -34,4 +32,14 @@ docker run XXX --privileged
 ```
 
 
+
+#### 3. Copy file from container to host
+
+```
+docker cp <CONTAINER_NAME>:<SRC_DIR_IN_CONTAINER> <DST_FILE_NAME>
+```
+
+**EXAMPLE**: sudo docker cp docker-nginx:/etc/nginx/conf.d/default.conf default.conf
+
+copy `/etc/nginx/conf.d/default.conf ` in container `docker-nginx` and save it on the host as file `default.conf`
 
