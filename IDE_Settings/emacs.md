@@ -101,3 +101,26 @@ If you find yourself typing the same non-trivial things repeatedly in the REPL, 
 If you develop some emotional attachment to the transcript of your *sml* buffer, you can save it to a file just like any other buffer. But after you do, it is not an *sml* buffer anymore, so you will have to create a new *sml*buffer from a buffer in SML Mode via C-c C-s.
 
 Acknowledgments: These instructions were prepared starting with material created by Ben Wood, adapted from prior materials by Dan Grossman and Hal Perkins. Stefan Monnier provided fantastic feedback on this document and even created SML Mode version 6 to simplify SML Mode installation substantially. John Reppy provided excellent improvements to the SML/NJ installation instructions.
+
+
+
+## Little tips:
+
+you can set the color by the menu bar:
+
+```
+"Options" -- "Customize Emacs"  -- "Custom Themes"
+```
+
+and also the font:
+
+```
+"Options" -- "Set Default Font"
+```
+
+finally, save the changes:
+
+```
+"Options" -- "Set Default Font"
+```
+
