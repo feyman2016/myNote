@@ -102,7 +102,13 @@ You can learn a new programming languages from the five following facets:
 
 ​	**Amazing ,hmm?**
 
-​	
+​	To be more generic, function definition in SML can be demonstrated as: **fun f p = e**
+
+```
+fun f p = e (* f the function name, where p is pattern, can be either one-of or each-of pattern *)
+```
+
+
 
 - **Static** environment and **dynamic** environment
 
